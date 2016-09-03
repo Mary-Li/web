@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <script type="text/javascript">
+        var f = 0;
+        var m = 0;
+        var h = 0;
+        var i = 1;
+        var t = null;
+        function hours(){
+            document.getElementById("time").innerHTML = f+":"+m+":"+h;
+            var btn1 = document.getElementById("btn1");
+            var btn2 = document.getElementById("btn2");
+            h++;
+            if(h>=10){
+                m++;
+                h=0;
+            }if(m>=60){
+                m=0;
+                f++;
+            }
+            btn1.onclick = function (){
+                if(i==1){
+                    btn1.value = "暂停";
+                    t = setInterval("hours()",100);
+                    i++;
+                }else{
+                    clearInterval(t);
+                    btn1.value = "开始";
+                    i = 1;
+                }
+            }
+            btn2.onclick = function(){
+                 clearInterval(t);
+                f = 0;
+                m = 0;
+                h = 0;
+                hours();
+            }
+        }
+    </script>
+</head>
+<body onload="hours()">
+    <div id="time"></div>
+    <input type="button" value="开始" id="btn1">
+    <input type="button" value="清空" id="btn2">
+</body>
+</html>
